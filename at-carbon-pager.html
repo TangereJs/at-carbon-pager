@@ -1,0 +1,153 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../at-theme/at-theme.html">
+<link rel="import" href="../at-carbon-icon/at-carbon-icon.html">
+
+
+<dom-module id="at-carbon-pager">
+
+  <template>
+
+    <style>
+      :host {}
+      
+      .steps {
+        text-align: center;
+      }
+      
+      .container {
+        width: 100%;
+        @apply(--unselectable);
+      }
+      
+      .content {
+        @apply(--layout-horizontal);
+        min-width: 280px;
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: white;
+        @apply(--shadow-elevation-2dp);
+      }
+      
+      .action {
+        color: var(--secondary-text-color);
+        text-transform: none;
+        @apply(--layout-center-center);
+        min-width: initial;
+        padding: 8px;
+        cursor: pointer;
+      }
+      
+      at-carbon-icon {
+        color: var(--at-active-color);
+        width: var(--at-inline-icon-size);
+        height: var(--at-inline-icon-size);
+      }
+      
+      .current {
+        text-align: center;
+        @apply(--paper-font-body1);
+        @apply(--layout-flex);
+        @apply(--layout-self-center);
+        @apply(--layout-center-justified);
+      }
+
+      
+      .hide {
+        display: none;
+      }
+    </style>
+
+    <div id="container" class="container">
+
+      <div class="content">
+
+        <div id="start" class="action hide" on-tap="_tapStart">
+          <at-carbon-icon icon="now:start"></at-carbon-icon>
+        </div>
+
+        <div id="prev" class="action hide" on-tap="_tapPrev">
+          <at-carbon-icon icon="now:rewind"></at-carbon-icon>
+        </div>
+
+        <div id="prevSpacer" class="action">
+           <at-carbon-icon icon="now:blank"></at-carbon-icon>
+        </div>
+
+        <div class="current">
+          Page [[page]]
+        </div>
+
+        <div id="startSpacer" class="action hide">
+          <at-carbon-icon icon="now:blank"></at-carbon-icon>
+        </div>
+
+        <div id="next" class="action hide" on-tap="_tapNext">
+          <at-carbon-icon icon="now:play"></at-carbon-icon>
+        </div>
+        
+        <div id="nextSpacer" class="action">
+           <at-carbon-icon icon="now:blank"></at-carbon-icon>
+        </div>
+
+      </div>
+
+    </div>
+
+  </template>
+</dom-module>
+
+<script>
+  (function () {
+
+    Polymer({
+      is: 'at-carbon-pager',
+      properties: {
+
+        page: {
+          type: Number,
+          value: 1,
+          notify: true
+        },
+
+        pageSize: {
+          type: Number,
+          value: 0,
+          notify: true
+        },
+
+
+      },
+
+       observers: [
+      '_updateLayout(page,pageSize)'      
+    ],
+
+      _updateLayout: function(page,pageSize) {
+        
+        var _lastPage = false;
+        
+        this.$.start.classList.toggle("hide", this.page <= 2);
+        this.$.startSpacer.classList.toggle("hide", this.page <= 2);
+        
+        this.$.prev.classList.toggle("hide", this.page <= 1);
+        this.$.prevSpacer.classList.toggle("hide", this.page > 1);
+        
+        this.$.next.classList.toggle("hide", _lastPage);
+        this.$.nextSpacer.classList.toggle("hide", !_lastPage);
+        
+      },
+
+      _tapStart: function () {
+        this.page = 1;
+      },
+      _tapPrev: function () {
+        if(this.page > 1) this.page--;
+      },
+      _tapNext: function () {
+        this.page++;
+      }
+
+    });
+
+  })();
+</script>

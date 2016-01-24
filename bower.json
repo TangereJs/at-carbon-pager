@@ -1,0 +1,9 @@
+{
+  "name": "at-carbon-pager",
+  "version": "1.0.0.1",
+  "dependencies": {
+    "polymer": "Polymer/polymer#master",
+    "at-theme": "TangereJs/at-thmeme#0.8-preview",
+    "at-carbon-icon": "TangereJs/at-carbon-icon#0.8-preview"
+  }
+}
