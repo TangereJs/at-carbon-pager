@@ -50,7 +50,6 @@
         @apply(--layout-self-center);
         @apply(--layout-center-justified);
       }
-
       
       .hide {
         display: none;
@@ -70,7 +69,7 @@
         </div>
 
         <div id="prevSpacer" class="action">
-           <at-carbon-icon icon="now:blank"></at-carbon-icon>
+          <at-carbon-icon icon="now:blank"></at-carbon-icon>
         </div>
 
         <div class="current">
@@ -84,9 +83,9 @@
         <div id="next" class="action hide" on-tap="_tapNext">
           <at-carbon-icon icon="now:play"></at-carbon-icon>
         </div>
-        
+
         <div id="nextSpacer" class="action">
-           <at-carbon-icon icon="now:blank"></at-carbon-icon>
+          <at-carbon-icon icon="now:blank"></at-carbon-icon>
         </div>
 
       </div>
@@ -115,43 +114,58 @@
           notify: true
         },
 
+        itemCount: {
+          type: Number,
+          value: 0,
+          notify: true
+        },
+
+        hide: {
+          type: Boolean,
+          value: false,
+          notify: true
+        }
+
 
       },
 
-       observers: [
-      '_updateLayout(page,pageSize)'      
+      observers: [
+      '_updateLayout(page,pageSize,itemCount,hide)'
     ],
 
-      _updateLayout: function(page,pageSize) {
-        
-        var _lastPage = false;        
-        
-        this._hide(this.$.start, this.page <= 2);
-        this._hide(this.$.startSpacer, this.page <= 2);
-        
-        this._hide(this.$.prev, this.page <= 1);
-        this._hide(this.$.prevSpacer, this.page > 1);
-        
+      _updateLayout: function (page, pageSize, itemCount, hide) {
+
+        var _lastPage = itemCount < pageSize;
+        var _hideAll = (_lastPage && page == 1) || hide;
+
+        this._hide(this.$.container, _hideAll);
+
+        this._hide(this.$.start, page <= 2);
+        this._hide(this.$.startSpacer, page <= 2);
+
+        this._hide(this.$.prev, page <= 1);
+        this._hide(this.$.prevSpacer, page > 1);
+
         this._hide(this.$.next, _lastPage);
         this._hide(this.$.nextSpacer, !_lastPage);
-        
+
       },
-      
-      _hide: function(node, hide) {
+
+      _hide: function (node, hide) {
         // required as IE11 doesn't suppport 2nd arg for toggle
-        if(hide) {
+        if (hide) {
           node.classList.add("hide");
         } else {
           node.classList.remove("hide");
         }
-        
+
       },
 
       _tapStart: function () {
         this.page = 1;
       },
       _tapPrev: function () {
-        if(this.page > 1) this.page--;
+        if (this.page > 1) this.page--;
       },
       _tapNext: function () {
         this.page++;
