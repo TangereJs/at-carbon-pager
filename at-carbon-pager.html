@@ -124,16 +124,26 @@
 
       _updateLayout: function(page,pageSize) {
         
-        var _lastPage = false;
+        var _lastPage = false;        
         
-        this.$.start.classList.toggle("hide", this.page <= 2);
-        this.$.startSpacer.classList.toggle("hide", this.page <= 2);
+        this._hide(this.$.start, this.page <= 2);
+        this._hide(this.$.startSpacer, this.page <= 2);
         
-        this.$.prev.classList.toggle("hide", this.page <= 1);
-        this.$.prevSpacer.classList.toggle("hide", this.page > 1);
+        this._hide(this.$.prev, this.page <= 1);
+        this._hide(this.$.prevSpacer, this.page > 1);
         
-        this.$.next.classList.toggle("hide", _lastPage);
-        this.$.nextSpacer.classList.toggle("hide", !_lastPage);
+        this._hide(this.$.next, _lastPage);
+        this._hide(this.$.nextSpacer, !_lastPage);
+        
+      },
+      
+      _hide: function(node, hide) {
+        // required as IE11 doesn't suppport 2nd arg for toggle
+        if(hide) {
+          node.classList.add("hide");
+        } else {
+          node.classList.remove("hide");
+        }
         
       },
 
