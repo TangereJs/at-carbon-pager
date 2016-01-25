@@ -8,20 +8,24 @@
   <template>
 
     <style>
-      :host {}
+      :host {
+        
+      }
       
       .steps {
         text-align: center;
       }
       
       .container {
+        box-sizing: border-box;
+        padding: 8px 32px;
         width: 100%;
         @apply(--unselectable);
       }
       
       .content {
         @apply(--layout-horizontal);
-        min-width: 280px;
+        min-width: 240px;
         max-width: 600px;
         margin: 0 auto;
         background-color: white;
