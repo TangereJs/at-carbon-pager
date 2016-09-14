@@ -9,20 +9,19 @@
 
     <style>
       :host {
-        
       }
-      
+
       .steps {
         text-align: center;
       }
-      
+
       .container {
         box-sizing: border-box;
         padding: 8px 32px;
         width: 100%;
         @apply(--unselectable);
       }
-      
+
       .content {
         @apply(--layout-horizontal);
         min-width: 240px;
@@ -31,7 +30,7 @@
         background-color: white;
         @apply(--shadow-elevation-2dp);
       }
-      
+
       .action {
         color: var(--secondary-text-color);
         text-transform: none;
@@ -40,13 +39,13 @@
         padding: 8px;
         cursor: pointer;
       }
-      
+
       at-carbon-icon {
         color: var(--at-active-color);
         width: var(--at-inline-icon-size);
         height: var(--at-inline-icon-size);
       }
-      
+
       .current {
         text-align: center;
         @apply(--paper-font-body1);
@@ -54,7 +53,7 @@
         @apply(--layout-self-center);
         @apply(--layout-center-justified);
       }
-      
+
       .hide {
         display: none;
       }
@@ -132,10 +131,14 @@
 
 
       },
-
+      $meta: [{
+        type: "element",
+        xtype: "at-carbon-pager",
+        title: "Pager"
+      }],
       observers: [
       '_updateLayout(page,pageSize,itemCount,hide)'
-    ],
+      ],
 
       _updateLayout: function (page, pageSize, itemCount, hide) {
 
@@ -156,7 +159,7 @@
       },
 
       _hide: function (node, hide) {
-        // required as IE11 doesn't suppport 2nd arg for toggle
+        // required as IE11 doesn't suppport 2nd arg for toggle        
         if (hide) {
           node.classList.add("hide");
         } else {
