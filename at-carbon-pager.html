@@ -1,7 +1,6 @@
-<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../tangere/tangere.html">
 <link rel="import" href="../at-theme/at-theme.html">
 <link rel="import" href="../at-carbon-icon/at-carbon-icon.html">
-
 
 <dom-module id="at-carbon-pager">
 
@@ -159,7 +158,7 @@
       },
 
       _hide: function (node, hide) {
-        // required as IE11 doesn't suppport 2nd arg for toggle        
+        // required as IE11 doesn't suppport 2nd arg for toggle
         if (hide) {
           node.classList.add("hide");
         } else {
