@@ -3,9 +3,7 @@
 <link rel="import" href="../at-carbon-icon/at-carbon-icon.html">
 
 <dom-module id="at-carbon-pager">
-
   <template>
-
     <style>
       :host {
       }
@@ -98,86 +96,82 @@
 </dom-module>
 
 <script>
-  (function () {
+  Polymer({
+    is: 'at-carbon-pager',
+    properties: {
 
-    Polymer({
-      is: 'at-carbon-pager',
-      properties: {
-
-        page: {
-          type: Number,
-          value: 1,
-          notify: true
-        },
-
-        pageSize: {
-          type: Number,
-          value: 0,
-          notify: true
-        },
-
-        itemCount: {
-          type: Number,
-          value: 0,
-          notify: true
-        },
-
-        hide: {
-          type: Boolean,
-          value: false,
-          notify: true
-        }
-
-
-      },
-      $meta: [{
-        type: "element",
-        xtype: "at-carbon-pager",
-        title: "Pager"
-      }],
-      observers: [
-      '_updateLayout(page,pageSize,itemCount,hide)'
-      ],
-
-      _updateLayout: function (page, pageSize, itemCount, hide) {
-
-        var _lastPage = itemCount < pageSize;
-        var _hideAll = (_lastPage && page == 1) || hide;
-
-        this._hide(this.$.container, _hideAll);
-
-        this._hide(this.$.start, page <= 2);
-        this._hide(this.$.startSpacer, page <= 2);
-
-        this._hide(this.$.prev, page <= 1);
-        this._hide(this.$.prevSpacer, page > 1);
-
-        this._hide(this.$.next, _lastPage);
-        this._hide(this.$.nextSpacer, !_lastPage);
-
+      page: {
+        type: Number,
+        value: 1,
+        notify: true
       },
 
-      _hide: function (node, hide) {
-        // required as IE11 doesn't suppport 2nd arg for toggle
-        if (hide) {
-          node.classList.add("hide");
-        } else {
-          node.classList.remove("hide");
-        }
-
+      pageSize: {
+        type: Number,
+        value: 0,
+        notify: true
       },
 
-      _tapStart: function () {
-        this.page = 1;
+      itemCount: {
+        type: Number,
+        value: 0,
+        notify: true
       },
-      _tapPrev: function () {
-        if (this.page > 1) this.page--;
-      },
-      _tapNext: function () {
-        this.page++;
+
+      hide: {
+        type: Boolean,
+        value: false,
+        notify: true
       }
 
-    });
+    },
 
-  })();
+    $meta: [{
+      type: "element",
+      xtype: "at-carbon-pager",
+      title: "Pager"
+    }],
+
+    observers: [
+      '_updateLayout(page,pageSize,itemCount,hide)'
+    ],
+
+    _updateLayout: function (page, pageSize, itemCount, hide) {
+      var _lastPage = itemCount < pageSize;
+      var _hideAll = (_lastPage && page == 1) || hide;
+
+      this._hide(this.$.container, _hideAll);
+
+      this._hide(this.$.start, page <= 2);
+      this._hide(this.$.startSpacer, page <= 2);
+
+      this._hide(this.$.prev, page <= 1);
+      this._hide(this.$.prevSpacer, page > 1);
+
+      this._hide(this.$.next, _lastPage);
+      this._hide(this.$.nextSpacer, !_lastPage);
+    },
+
+    _hide: function (node, hide) {
+      // required as IE11 doesn't suppport 2nd arg for toggle
+      if (hide) {
+        node.classList.add("hide");
+      
+      } else {
+        node.classList.remove("hide");
+      }
+    },
+
+    _tapStart: function () {
+      this.page = 1;
+    },
+
+    _tapPrev: function () {
+      if (this.page > 1) this.page--;
+    },
+
+    _tapNext: function () {
+      this.page++;
+    }
+  });
 </script>
