@@ -1,0 +1,852 @@
+<!doctype html>
+<html>
+  <head>
+  <meta charset="UTF-8">
+  <title>at-carbon-pager tests</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+  <script src="../../web-component-tester/browser.js"></script>
+  <link rel="import" href="../at-carbon-pager.html">
+  <link rel="import" href="../../iron-test-helpers/iron-test-helpers.html" />
+  </head>
+  <body>
+    <test-fixture id="initial">
+      <template>
+        <at-carbon-pager></at-carbon-pager>
+      </template>
+    </test-fixture>
+
+    <!-- 
+      page fixtures 
+    -->
+    <test-fixture id="pageIsUndefined">
+      <template>
+        <at-carbon-pager page="undefined"></at-carbon-pager>
+      </template>
+    </test-fixture>
+    <test-fixture id="pageIsNull">
+      <template>
+        <at-carbon-pager page="null"></at-carbon-pager>
+      </template>
+    </test-fixture>
+    <test-fixture id="pageIsTrue">
+      <template>
+        <at-carbon-pager page="true"></at-carbon-pager>
+      </template>
+    </test-fixture>
+    <test-fixture id="pageIsFalse">
+      <template>
+        <at-carbon-pager page="false"></at-carbon-pager>
+      </template>
+    </test-fixture>
+    <test-fixture id="pageIs-42">
+      <template>
+        <at-carbon-pager page="-42"></at-carbon-pager>
+      </template>
+    </test-fixture>
+    <test-fixture id="pageIs0">
+      <template>
+        <at-carbon-pager page="0"></at-carbon-pager>
+      </template>
+    </test-fixture>
+    <test-fixture id="pageIs42">
+      <template>
+        <at-carbon-pager page="42"></at-carbon-pager>
+      </template>
+    </test-fixture>
+    <test-fixture id="pageIsEmpty">
+      <template>
+        <at-carbon-pager page=""></at-carbon-pager>
+      </template>
+    </test-fixture>
+    <test-fixture id="pageIsLorem_ipsum">
+      <template>
+        <at-carbon-pager page="lorem ipsum"></at-carbon-pager>
+      </template>
+    </test-fixture>
+    <test-fixture id="pageIs{}">
+      <template>
+        <at-carbon-pager page="{}"></at-carbon-pager>
+      </template>
+    </test-fixture>
+    <test-fixture id="pageIs[]">
+      <template>
+        <at-carbon-pager page="[]"></at-carbon-pager>
+      </template>
+    </test-fixture>
+    <test-fixture id="pageIsFunction">
+      <template>
+        <at-carbon-pager page="function f() { return undefined; }"></at-carbon-pager>
+      </template>
+    </test-fixture>
+
+    <!-- 
+      pageSize fixtures 
+    -->
+    <test-fixture id="pageSizeIsUndefined">
+      <template>
+        <at-carbon-pager page-size="undefined"></at-carbon-pager>
+      </template>
+    </test-fixture>
+    <test-fixture id="pageSizeIsNull">
+      <template>
+        <at-carbon-pager page-size="null"></at-carbon-pager>
+      </template>
+    </test-fixture>
+    <test-fixture id="pageSizeIsTrue">
+      <template>
+        <at-carbon-pager page-size="true"></at-carbon-pager>
+      </template>
+    </test-fixture>
+    <test-fixture id="pageSizeIsFalse">
+      <template>
+        <at-carbon-pager page-size="false"></at-carbon-pager>
+      </template>
+    </test-fixture>
+    <test-fixture id="pageSizeIs-42">
+      <template>
+        <at-carbon-pager page-size="-42"></at-carbon-pager>
+      </template>
+    </test-fixture>
+    <test-fixture id="pageSizeIs0">
+      <template>
+        <at-carbon-pager page-size="0"></at-carbon-pager>
+      </template>
+    </test-fixture>
+    <test-fixture id="pageSizeIs42">
+      <template>
+        <at-carbon-pager page-size="42"></at-carbon-pager>
+      </template>
+    </test-fixture>
+    <test-fixture id="pageSizeIsEmpty">
+      <template>
+        <at-carbon-pager page-size=""></at-carbon-pager>
+      </template>
+    </test-fixture>
+    <test-fixture id="pageSizeIsLorem_ipsum">
+      <template>
+        <at-carbon-pager page-size="lorem ipsum"></at-carbon-pager>
+      </template>
+    </test-fixture>
+    <test-fixture id="pageSizeIs{}">
+      <template>
+        <at-carbon-pager page-size="{}"></at-carbon-pager>
+      </template>
+    </test-fixture>
+    <test-fixture id="pageSizeIs[]">
+      <template>
+        <at-carbon-pager page-size="[]"></at-carbon-pager>
+      </template>
+    </test-fixture>
+    <test-fixture id="pageSizeIsFunction">
+      <template>
+        <at-carbon-pager page-size="function f() { return undefined; }"></at-carbon-pager>
+      </template>
+    </test-fixture>
+
+    <!-- 
+      itemCount fixtures 
+    -->
+    <test-fixture id="itemCountIsUndefined">
+      <template>
+        <at-carbon-pager item-count="undefined"></at-carbon-pager>
+      </template>
+    </test-fixture>
+    <test-fixture id="itemCountIsNull">
+      <template>
+        <at-carbon-pager item-count="null"></at-carbon-pager>
+      </template>
+    </test-fixture>
+    <test-fixture id="itemCountIsTrue">
+      <template>
+        <at-carbon-pager item-count="true"></at-carbon-pager>
+      </template>
+    </test-fixture>
+    <test-fixture id="itemCountIsFalse">
+      <template>
+        <at-carbon-pager item-count="false"></at-carbon-pager>
+      </template>
+    </test-fixture>
+    <test-fixture id="itemCountIs-42">
+      <template>
+        <at-carbon-pager item-count="-42"></at-carbon-pager>
+      </template>
+    </test-fixture>
+    <test-fixture id="itemCountIs0">
+      <template>
+        <at-carbon-pager item-count="0"></at-carbon-pager>
+      </template>
+    </test-fixture>
+    <test-fixture id="itemCountIs42">
+      <template>
+        <at-carbon-pager item-count="42"></at-carbon-pager>
+      </template>
+    </test-fixture>
+    <test-fixture id="itemCountIsEmpty">
+      <template>
+        <at-carbon-pager item-count=""></at-carbon-pager>
+      </template>
+    </test-fixture>
+    <test-fixture id="itemCountIsLorem_ipsum">
+      <template>
+        <at-carbon-pager item-count="lorem ipsum"></at-carbon-pager>
+      </template>
+    </test-fixture>
+    <test-fixture id="itemCountIs{}">
+      <template>
+        <at-carbon-pager item-count="{}"></at-carbon-pager>
+      </template>
+    </test-fixture>
+    <test-fixture id="itemCountIs[]">
+      <template>
+        <at-carbon-pager item-count="[]"></at-carbon-pager>
+      </template>
+    </test-fixture>
+    <test-fixture id="itemCountIsFunction">
+      <template>
+        <at-carbon-pager item-count="function f() { return undefined; }"></at-carbon-pager>
+      </template>
+    </test-fixture>
+
+    <!-- 
+      hide fixtures 
+    -->
+    <test-fixture id="hideIsUndefined">
+      <template>
+        <at-carbon-pager hide="undefined"></at-carbon-pager>
+      </template>
+    </test-fixture>
+    <test-fixture id="hideIsNull">
+      <template>
+        <at-carbon-pager hide="null"></at-carbon-pager>
+      </template>
+    </test-fixture>
+    <test-fixture id="hideIsTrue">
+      <template>
+        <at-carbon-pager hide="true"></at-carbon-pager>
+      </template>
+    </test-fixture>
+    <test-fixture id="hideIsFalse">
+      <template>
+        <at-carbon-pager hide="false"></at-carbon-pager>
+      </template>
+    </test-fixture>
+    <test-fixture id="hideIs-42">
+      <template>
+        <at-carbon-pager hide="-42"></at-carbon-pager>
+      </template>
+    </test-fixture>
+    <test-fixture id="hideIs0">
+      <template>
+        <at-carbon-pager hide="0"></at-carbon-pager>
+      </template>
+    </test-fixture>
+    <test-fixture id="hideIs42">
+      <template>
+        <at-carbon-pager hide="42"></at-carbon-pager>
+      </template>
+    </test-fixture>
+    <test-fixture id="hideIsEmpty">
+      <template>
+        <at-carbon-pager hide=""></at-carbon-pager>
+      </template>
+    </test-fixture>
+    <test-fixture id="hideIsLorem_ipsum">
+      <template>
+        <at-carbon-pager hide="lorem ipsum"></at-carbon-pager>
+      </template>
+    </test-fixture>
+    <test-fixture id="hideIs{}">
+      <template>
+        <at-carbon-pager hide="{}"></at-carbon-pager>
+      </template>
+    </test-fixture>
+    <test-fixture id="hideIs[]">
+      <template>
+        <at-carbon-pager hide="[]"></at-carbon-pager>
+      </template>
+    </test-fixture>
+    <test-fixture id="hideIsFunction">
+      <template>
+        <at-carbon-pager hide="function f() { return undefined; }"></at-carbon-pager>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="propertyTests">
+      <template>
+        <at-carbon-pager></at-carbon-pager>
+      </template>
+    </test-fixture>
+    
+  <script>
+    suite('initial value tests', function() {
+      test('initial value', function() {
+        var elt = fixture('initial');
+
+        assert.equal(elt.page, 1);
+        assert.equal(elt.pageSize, 0);
+        assert.equal(elt.itemCount, 0);
+        assert.equal(elt.hide, false);
+      });
+    });
+    // 
+    // page attribute tests
+    // 
+    suite("page attribute tests", function() {
+      test('page is undefined', function() {
+        var elt = fixture('pageIsUndefined');
+
+        assert.isNaN(elt.page);
+        assert.equal(elt.pageSize, 0);
+        assert.equal(elt.itemCount, 0);
+        assert.equal(elt.hide, false);
+      });
+
+      test('page is null', function() {
+        var elt = fixture('pageIsNull');
+
+        assert.isNaN(elt.page);
+        assert.equal(elt.pageSize, 0);
+        assert.equal(elt.itemCount, 0);
+        assert.equal(elt.hide, false);
+      });
+
+      test('page is true', function() {
+        var elt = fixture('pageIsTrue');
+
+        assert.isNaN(elt.page);
+        assert.equal(elt.pageSize, 0);
+        assert.equal(elt.itemCount, 0);
+        assert.equal(elt.hide, false);
+      });
+
+      test('page is false', function() {
+        var elt = fixture('pageIsFalse');
+
+        assert.isNaN(elt.page);
+        assert.equal(elt.pageSize, 0);
+        assert.equal(elt.itemCount, 0);
+        assert.equal(elt.hide, false);
+      });
+
+      test('page is -42', function() {
+        var elt = fixture('pageIs-42');
+
+        assert.equal(elt.page, -42);
+        assert.equal(elt.pageSize, 0);
+        assert.equal(elt.itemCount, 0);
+        assert.equal(elt.hide, false);
+      });
+
+      test('page is 0', function() {
+        var elt = fixture('pageIs0');
+
+        assert.equal(elt.page, 0);
+        assert.equal(elt.pageSize, 0);
+        assert.equal(elt.itemCount, 0);
+        assert.equal(elt.hide, false);
+      });
+
+      test('page is 42', function() {
+        var elt = fixture('pageIs42');
+
+        assert.equal(elt.page, 42);
+        assert.equal(elt.pageSize, 0);
+        assert.equal(elt.itemCount, 0);
+        assert.equal(elt.hide, false);
+      });
+
+      test('page is empty', function() {
+        var elt = fixture('pageIsEmpty');
+
+        assert.equal(elt.page, 0);
+        assert.equal(elt.pageSize, 0);
+        assert.equal(elt.itemCount, 0);
+        assert.equal(elt.hide, false);
+      });
+
+      test('page is lorem ipsum', function() {
+        var elt = fixture('pageIsLorem_ipsum');
+
+        assert.isNaN(elt.page);
+        assert.equal(elt.pageSize, 0);
+        assert.equal(elt.itemCount, 0);
+        assert.equal(elt.hide, false);
+      });
+
+      test('page is {}', function() {
+        var elt = fixture('pageIs{}');
+
+        assert.isNaN(elt.page);
+        assert.equal(elt.pageSize, 0);
+        assert.equal(elt.itemCount, 0);
+        assert.equal(elt.hide, false);
+      });
+
+      test('page is []', function() {
+        var elt = fixture('pageIs[]');
+
+        assert.isNaN(elt.page);
+        assert.equal(elt.pageSize, 0);
+        assert.equal(elt.itemCount, 0);
+        assert.equal(elt.hide, false);
+      });
+
+      test('page is function', function() {
+        var elt = fixture('pageIsFunction');
+
+        assert.isNaN(elt.page);
+        assert.equal(elt.pageSize, 0);
+        assert.equal(elt.itemCount, 0);
+        assert.equal(elt.hide, false);
+      });
+    });
+
+    // 
+    // pageSize attribute tests
+    // 
+    suite("pageSize attribute tests", function() {
+      test('pageSize is undefined', function() {
+        var elt = fixture('pageSizeIsUndefined');
+
+        assert.equal(elt.page, 1);
+        assert.isNaN(elt.pageSize);
+        assert.equal(elt.itemCount, 0);
+        assert.equal(elt.hide, false);
+      });
+
+      test('pageSize is null', function() {
+        var elt = fixture('pageSizeIsNull');
+
+        assert.equal(elt.page, 1);
+        assert.isNaN(elt.pageSize);
+        assert.equal(elt.itemCount, 0);
+        assert.equal(elt.hide, false);
+      });
+
+      test('pageSize is true', function() {
+        var elt = fixture('pageSizeIsTrue');
+
+        assert.equal(elt.page, 1);
+        assert.isNaN(elt.pageSize);
+        assert.equal(elt.itemCount, 0);
+        assert.equal(elt.hide, false);
+      });
+
+      test('pageSize is false', function() {
+        var elt = fixture('pageSizeIsFalse');
+
+        assert.equal(elt.page, 1);
+        assert.isNaN(elt.pageSize);
+        assert.equal(elt.itemCount, 0);
+        assert.equal(elt.hide, false);
+      });
+
+      test('pageSize is -42', function() {
+        var elt = fixture('pageSizeIs-42');
+
+        assert.equal(elt.page, 1);
+        assert.equal(elt.pageSize, -42);
+        assert.equal(elt.itemCount, 0);
+        assert.equal(elt.hide, false);
+      });
+
+      test('pageSize is 0', function() {
+        var elt = fixture('pageSizeIs0');
+
+        assert.equal(elt.page, 1);
+        assert.equal(elt.pageSize, 0);
+        assert.equal(elt.itemCount, 0);
+        assert.equal(elt.hide, false);
+      });
+
+      test('pageSize is 42', function() {
+        var elt = fixture('pageSizeIs42');
+
+        assert.equal(elt.page, 1);
+        assert.equal(elt.pageSize, 42);
+        assert.equal(elt.itemCount, 0);
+        assert.equal(elt.hide, false);
+      });
+
+      test('pageSize is empty', function() {
+        var elt = fixture('pageSizeIsEmpty');
+
+        assert.equal(elt.page, 1);
+        assert.equal(elt.pageSize, 0);
+        assert.equal(elt.itemCount, 0);
+        assert.equal(elt.hide, false);
+      });
+
+      test('pageSize is lorem ipsum', function() {
+        var elt = fixture('pageSizeIsLorem_ipsum');
+
+        assert.equal(elt.page, 1);
+        assert.isNaN(elt.pageSize);
+        assert.equal(elt.itemCount, 0);
+        assert.equal(elt.hide, false);
+      });
+
+      test('pageSize is {}', function() {
+        var elt = fixture('pageSizeIs{}');
+
+        assert.equal(elt.page, 1);
+        assert.isNaN(elt.pageSize);
+        assert.equal(elt.itemCount, 0);
+        assert.equal(elt.hide, false);
+      });
+
+      test('pageSize is []', function() {
+        var elt = fixture('pageSizeIs[]');
+
+        assert.equal(elt.page, 1);
+        assert.isNaN(elt.pageSize);
+        assert.equal(elt.itemCount, 0);
+        assert.equal(elt.hide, false);
+      });
+
+      test('pageSize is function', function() {
+        var elt = fixture('pageSizeIsFunction');
+
+        assert.equal(elt.page, 1);
+        assert.isNaN(elt.pageSize);
+        assert.equal(elt.itemCount, 0);
+        assert.equal(elt.hide, false);
+      });
+    });
+
+    // 
+    // itemCount attribute tests
+    // 
+    suite("itemCount attribute tests", function() {
+      test('itemCount is undefined', function() {
+        var elt = fixture('itemCountIsUndefined');
+
+        assert.equal(elt.page, 1);
+        assert.equal(elt.pageSize, 0);
+        assert.isNaN(elt.itemCount);
+        assert.equal(elt.hide, false);
+      });
+
+      test('itemCount is null', function() {
+        var elt = fixture('itemCountIsNull');
+
+        assert.equal(elt.page, 1);
+        assert.equal(elt.pageSize, 0);
+        assert.isNaN(elt.itemCount);
+        assert.equal(elt.hide, false);
+      });
+
+      test('itemCount is true', function() {
+        var elt = fixture('itemCountIsTrue');
+
+        assert.equal(elt.page, 1);
+        assert.equal(elt.pageSize, 0);
+        assert.isNaN(elt.itemCount);
+        assert.equal(elt.hide, false);
+      });
+
+      test('itemCount is false', function() {
+        var elt = fixture('itemCountIsFalse');
+
+        assert.equal(elt.page, 1);
+        assert.equal(elt.pageSize, 0);
+        assert.isNaN(elt.itemCount);
+        assert.equal(elt.hide, false);
+      });
+
+      test('itemCount is -42', function() {
+        var elt = fixture('itemCountIs-42');
+
+        assert.equal(elt.page, 1);
+        assert.equal(elt.pageSize, 0);
+        assert.equal(elt.itemCount, -42);
+        assert.equal(elt.hide, false);
+      });
+
+      test('itemCount is 0', function() {
+        var elt = fixture('itemCountIs0');
+
+        assert.equal(elt.page, 1);
+        assert.equal(elt.pageSize, 0);
+        assert.equal(elt.itemCount, 0);
+        assert.equal(elt.hide, false);
+      });
+
+      test('itemCount is 42', function() {
+        var elt = fixture('itemCountIs42');
+
+        assert.equal(elt.page, 1);
+        assert.equal(elt.pageSize, 0);
+        assert.equal(elt.itemCount, 42);
+        assert.equal(elt.hide, false);
+      });
+
+      test('itemCount is empty', function() {
+        var elt = fixture('itemCountIsEmpty');
+
+        assert.equal(elt.page, 1);
+        assert.equal(elt.pageSize, 0);
+        assert.equal(elt.itemCount, 0);
+        assert.equal(elt.hide, false);
+      });
+
+      test('itemCount is lorem ipsum', function() {
+        var elt = fixture('itemCountIsLorem_ipsum');
+
+        assert.equal(elt.page, 1);
+        assert.equal(elt.pageSize, 0);
+        assert.isNaN(elt.itemCount);
+        assert.equal(elt.hide, false);
+      });
+
+      test('itemCount is {}', function() {
+        var elt = fixture('itemCountIs{}');
+
+        assert.equal(elt.page, 1);
+        assert.equal(elt.pageSize, 0);
+        assert.isNaN(elt.itemCount);
+        assert.equal(elt.hide, false);
+      });
+
+      test('itemCount is []', function() {
+        var elt = fixture('itemCountIs[]');
+
+        assert.equal(elt.page, 1);
+        assert.equal(elt.pageSize, 0);
+        assert.isNaN(elt.itemCount);
+        assert.equal(elt.hide, false);
+      });
+
+      test('itemCount is function', function() {
+        var elt = fixture('itemCountIsFunction');
+
+        assert.equal(elt.page, 1);
+        assert.equal(elt.pageSize, 0);
+        assert.isNaN(elt.itemCount);
+        assert.equal(elt.hide, false);
+      });
+    });
+
+    // 
+    // hide attribute tests
+    // 
+    suite("hide attribute tests", function() {
+      test('hide is undefined', function() {
+        var elt = fixture('hideIsUndefined');
+
+        assert.equal(elt.page, 1);
+        assert.equal(elt.pageSize, 0);
+        assert.equal(elt.itemCount, 0);
+        assert.equal(elt.hide, true);
+      });
+
+      test('hide is null', function() {
+        var elt = fixture('hideIsNull');
+
+        assert.equal(elt.page, 1);
+        assert.equal(elt.pageSize, 0);
+        assert.equal(elt.itemCount, 0);
+        assert.equal(elt.hide, true);
+      });
+
+      test('hide is true', function() {
+        var elt = fixture('hideIsTrue');
+
+        assert.equal(elt.page, 1);
+        assert.equal(elt.pageSize, 0);
+        assert.equal(elt.itemCount, 0);
+        assert.equal(elt.hide, true);
+      });
+
+      test('hide is false', function() {
+        var elt = fixture('hideIsFalse');
+
+        assert.equal(elt.page, 1);
+        assert.equal(elt.pageSize, 0);
+        assert.equal(elt.itemCount, 0);
+        assert.equal(elt.hide, true);
+      });
+
+      test('hide is -42', function() {
+        var elt = fixture('hideIs-42');
+
+        assert.equal(elt.page, 1);
+        assert.equal(elt.pageSize, 0);
+        assert.equal(elt.itemCount, 0);
+        assert.equal(elt.hide, true);
+      });
+
+      test('hide is 0', function() {
+        var elt = fixture('hideIs0');
+
+        assert.equal(elt.page, 1);
+        assert.equal(elt.pageSize, 0);
+        assert.equal(elt.itemCount, 0);
+        assert.equal(elt.hide, true);
+      });
+
+      test('hide is 42', function() {
+        var elt = fixture('hideIs42');
+
+        assert.equal(elt.page, 1);
+        assert.equal(elt.pageSize, 0);
+        assert.equal(elt.itemCount, 0);
+        assert.equal(elt.hide, true);
+      });
+
+      test('hide is empty', function() {
+        var elt = fixture('hideIsEmpty');
+
+        assert.equal(elt.page, 1);
+        assert.equal(elt.pageSize, 0);
+        assert.equal(elt.itemCount, 0);
+        assert.equal(elt.hide, true);
+      });
+
+      test('hide is lorem ipsum', function() {
+        var elt = fixture('hideIsLorem_ipsum');
+
+        assert.equal(elt.page, 1);
+        assert.equal(elt.pageSize, 0);
+        assert.equal(elt.itemCount, 0);
+        assert.equal(elt.hide, true);
+      });
+
+      test('hide is {}', function() {
+        var elt = fixture('hideIs{}');
+
+        assert.equal(elt.page, 1);
+        assert.equal(elt.pageSize, 0);
+        assert.equal(elt.itemCount, 0);
+        assert.equal(elt.hide, true);
+      });
+
+      test('hide is []', function() {
+        var elt = fixture('hideIs[]');
+
+        assert.equal(elt.page, 1);
+        assert.equal(elt.pageSize, 0);
+        assert.equal(elt.itemCount, 0);
+        assert.equal(elt.hide, true);
+      });
+
+      test('hide is function', function() {
+        var elt = fixture('hideIsFunction');
+
+        assert.equal(elt.page, 1);
+        assert.equal(elt.pageSize, 0);
+        assert.equal(elt.itemCount, 0);
+        assert.equal(elt.hide, true);
+      });
+    });
+
+    suite("tests where properties are set as in code", function() { 
+
+      test('page values', function() {
+        var elt = fixture('propertyTests');
+
+        var actValues = [ 
+          "undefined", "null", "true", "false", "-42", "0", "42", "", "lorem ipsum", "{}", "[]", "function f() { return undefined; }", 
+          undefined, null, true, false, -42, 0, 42, {}, []
+          ];
+
+        var expValues = [ 
+          "undefined", "null", "true", "false", "-42", "0", "42", "", "lorem ipsum", "{}", "[]", "function f() { return undefined; }",
+          undefined, null, true, false, -42, 0, 42, {}, []
+         ];
+
+        for (var i=0; i < actValues.length; i++) { 
+          var actValue = actValues[i];
+          var expValue = expValues[i];
+
+          elt.page = actValue;
+          
+          assert.deepEqual(elt.page, expValue);
+          assert.equal(elt.pageSize, 0);
+          assert.equal(elt.itemCount, 0);
+          assert.equal(elt.hide, false);
+        }
+      });
+
+      test('pageSize values', function() {
+        var elt = fixture('propertyTests');
+
+        var actValues = [ 
+          "undefined", "null", "true", "false", "-42", "0", "42", "", "lorem ipsum", "{}", "[]", "function f() { return undefined; }", 
+          undefined, null, true, false, -42, 0, 42, {}, []
+          ];
+
+        var expValues = [ 
+          "undefined", "null", "true", "false", "-42", "0", "42", "", "lorem ipsum", "{}", "[]", "function f() { return undefined; }",
+          undefined, null, true, false, -42, 0, 42, {}, []
+         ];
+
+        for (var i=0; i < actValues.length; i++) { 
+          var actValue = actValues[i];
+          var expValue = expValues[i];
+
+          elt.pageSize = actValue;
+          
+          assert.equal(elt.page, 1);
+          assert.deepEqual(elt.pageSize, expValue);
+          assert.equal(elt.itemCount, 0);
+          assert.equal(elt.hide, false);
+        }
+      });
+
+      test('itemCount values', function() {
+        var elt = fixture('propertyTests');
+
+        var actValues = [ 
+          "undefined", "null", "true", "false", "-42", "0", "42", "", "lorem ipsum", "{}", "[]", "function f() { return undefined; }", 
+          undefined, null, true, false, -42, 0, 42, {}, []
+          ];
+
+        var expValues = [ 
+          "undefined", "null", "true", "false", "-42", "0", "42", "", "lorem ipsum", "{}", "[]", "function f() { return undefined; }",
+          undefined, null, true, false, -42, 0, 42, {}, []
+         ];
+
+        for (var i=0; i < actValues.length; i++) { 
+          var actValue = actValues[i];
+          var expValue = expValues[i];
+
+          elt.itemCount = actValue;
+          
+          assert.equal(elt.page, 1);
+          assert.equal(elt.pageSize, 0);
+          assert.deepEqual(elt.itemCount, expValue);
+          assert.equal(elt.hide, false);
+        }
+      });
+
+      test('hide values', function() {
+        var elt = fixture('propertyTests');
+
+        var actValues = [ 
+          "undefined", "null", "true", "false", "-42", "0", "42", "", "lorem ipsum", "{}", "[]", "function f() { return undefined; }", 
+          undefined, null, true, false, -42, 0, 42, {}, []
+          ];
+
+        var expValues = [ 
+          "undefined", "null", "true", "false", "-42", "0", "42", "", "lorem ipsum", "{}", "[]", "function f() { return undefined; }",
+          undefined, null, true, false, -42, 0, 42, {}, []
+         ];
+
+        for (var i=0; i < actValues.length; i++) { 
+          var actValue = actValues[i];
+          var expValue = expValues[i];
+
+          elt.hide = actValue;
+          
+          assert.equal(elt.page, 1);
+          assert.equal(elt.pageSize, 0);
+          assert.equal(elt.itemCount, 0);
+          assert.deepEqual(elt.hide, expValue);
+        }
+      });
+    });
+  </script>
+  </body>
+</html>

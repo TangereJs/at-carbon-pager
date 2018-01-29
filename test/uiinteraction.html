@@ -1,0 +1,125 @@
+<!doctype html>
+
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>at-carbon-pager tests</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+  <script src="../../web-component-tester/browser.js"></script>
+  <link rel="import" href="../at-carbon-pager.html">
+  <link rel="import" href="../../iron-test-helpers/iron-test-helpers.html" />
+
+</head>
+<body>
+
+  <test-fixture id="propertyTest">
+    <template>
+      <at-carbon-pager></at-carbon-pager>
+    </template>
+  </test-fixture>
+
+  <script>
+    suite('uiinteraction tests', function() {
+
+      function assertHidden(elt, isHidden) {
+        assert.equal(elt.classList.contains('hide'), isHidden);
+      }
+
+      function assertLastPageBehavior(elt) {
+        elt.pageSize = 10;
+
+        assertHidden(elt.$.container, true);
+
+        assertHidden(elt.$.start, true);
+        assertHidden(elt.$.startSpacer, true);
+        assertHidden(elt.$.prev, true);
+        assertHidden(elt.$.prevSpacer, false);
+        assertHidden(elt.$.next, true);
+        assertHidden(elt.$.nextSpacer, false);
+
+        elt.itemCount = 5;
+
+        assertHidden(elt.$.container, true);
+
+        assertHidden(elt.$.start, true);
+        assertHidden(elt.$.startSpacer, true);
+        assertHidden(elt.$.prev, true);
+        assertHidden(elt.$.prevSpacer, false);
+        assertHidden(elt.$.next, true);
+        assertHidden(elt.$.nextSpacer, false);
+
+        elt.itemCount = 15;
+
+        assertHidden(elt.$.container, false);
+
+        assertHidden(elt.$.start, true);
+        assertHidden(elt.$.startSpacer, true);
+        assertHidden(elt.$.prev, true);
+        assertHidden(elt.$.prevSpacer, false);
+        assertHidden(elt.$.next, false);
+        assertHidden(elt.$.nextSpacer, true);
+      }
+
+      test('assert that page,pageSize and itemCount show/hide elements', function() {
+        var elt = fixture('propertyTest');
+
+        assertHidden(elt.$.container, false);
+
+        assertHidden(elt.$.start, true);
+        assertHidden(elt.$.startSpacer, true);
+        assertHidden(elt.$.prev, true);
+        assertHidden(elt.$.prevSpacer, false);
+        assertHidden(elt.$.next, false);
+        assertHidden(elt.$.nextSpacer, true);
+
+        assertLastPageBehavior(elt);
+
+        elt.itemCount = 100;
+        elt.pageSize = 10;
+
+        elt.page = -1;
+
+        assertHidden(elt.$.container, false);
+
+        assertHidden(elt.$.start, true);
+        assertHidden(elt.$.startSpacer, true);
+        assertHidden(elt.$.prev, true);
+        assertHidden(elt.$.prevSpacer, false);
+        assertHidden(elt.$.next, false);
+        assertHidden(elt.$.nextSpacer, true);
+
+        elt.page = 2;
+
+        assertHidden(elt.$.container, false);
+
+        assertHidden(elt.$.start, true);
+        assertHidden(elt.$.startSpacer, true);
+        assertHidden(elt.$.prev, false);
+        assertHidden(elt.$.prevSpacer, true);
+        assertHidden(elt.$.next, false);
+        assertHidden(elt.$.nextSpacer, true);
+
+        elt.page = 1000;
+
+        assertHidden(elt.$.container, false);
+
+        assertHidden(elt.$.start, false);
+        assertHidden(elt.$.startSpacer, false);
+        assertHidden(elt.$.prev, false);
+        assertHidden(elt.$.prevSpacer, true);
+        assertHidden(elt.$.next, false);
+        assertHidden(elt.$.nextSpacer, true);
+
+      });
+
+
+      test('TODO assert that taping buttons updates the page property', function() {
+        
+      });
+
+    });
+  </script>
+</body>
+</html>
