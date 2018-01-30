@@ -115,8 +115,48 @@
       });
 
 
-      test('TODO assert that taping buttons updates the page property', function() {
-        
+      test('assert that taping buttons updates the page property', function() {
+        var elt = fixture('propertyTest');
+
+        assert.equal(elt.page, 1);
+        var evtCount = 0;
+
+        elt.addEventListener('page-changed', function(event) {
+          evtCount++;
+        });
+
+        MockInteractions.tap(elt.$.next);
+        assert.equal(evtCount, 1);
+        assert.equal(elt.page, 2);
+
+        MockInteractions.tap(elt.$.next);
+        assert.equal(evtCount, 2);
+        assert.equal(elt.page, 3);
+
+        MockInteractions.tap(elt.$.next);
+        assert.equal(evtCount, 3);
+        assert.equal(elt.page, 4);
+
+        MockInteractions.tap(elt.$.prev);
+        assert.equal(evtCount, 4);
+        assert.equal(elt.page, 3);
+
+        MockInteractions.tap(elt.$.prev);
+        assert.equal(evtCount, 5);
+        assert.equal(elt.page, 2);
+
+        MockInteractions.tap(elt.$.next);
+        MockInteractions.tap(elt.$.next);
+        MockInteractions.tap(elt.$.next);
+        MockInteractions.tap(elt.$.next);
+        MockInteractions.tap(elt.$.next);
+
+        assert.equal(evtCount, 10);
+        assert.equal(elt.page, 7);
+
+        MockInteractions.tap(elt.$.start);
+        assert.equal(evtCount, 11);
+        assert.equal(elt.page, 1);
       });
 
     });
